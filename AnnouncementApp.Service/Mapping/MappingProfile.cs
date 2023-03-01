@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using AnnouncementApp.Data.Models;
+using AnnouncementApp.DTO;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +11,12 @@ namespace AnnouncementApp.Service.Mapping
 {
     public class MappingProfile : Profile
     {
+        public MappingProfile() 
+        
+        {
+            CreateMap<AnnouncementsDto, Announcements>()
+            .ReverseMap();
+
+        }
     }
 }

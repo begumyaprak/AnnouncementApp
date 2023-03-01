@@ -14,7 +14,7 @@ namespace AnnouncementApp.Data.UOW
 
     public interface IUnitOfWork : IDisposable
     {
-        public IRepository<Users> Users { get; }
+       // public IRepository<Users> Users { get; }
 
         public IRepository<Announcements> Announcements { get; }
 

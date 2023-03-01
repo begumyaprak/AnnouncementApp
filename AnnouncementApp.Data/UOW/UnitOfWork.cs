@@ -17,17 +17,14 @@ namespace AnnouncementApp.Data.UOW
         {
             _dbContext = dbContext;
 
-            Users = new Repository<Users>(_dbContext);
+           // Users = new Repository<Users>(_dbContext);
 
             Announcements = new Repository<Announcements>(_dbContext);
 
 
-
-
-
         }
 
-        public IRepository<Users> Users { get; private set; }
+        //public IRepository<Users> Users { get; private set; }
 
         public IRepository<Announcements> Announcements { get; private set; }
 
