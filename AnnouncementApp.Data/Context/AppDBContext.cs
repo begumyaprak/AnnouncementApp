@@ -1,0 +1,26 @@
+﻿using AnnouncementApp.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AnnouncementApp.Data
+{
+    public class AppDBContext : IdentityDbContext<Users>
+    {
+
+        public AppDBContext(DbContextOptions options) : base(options)
+        {
+        }
+
+        public DbSet<Announcements> Announcements { get; set; }
+
+        
+
+        
+
+    }
+}
