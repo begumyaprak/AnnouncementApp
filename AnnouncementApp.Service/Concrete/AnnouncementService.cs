@@ -17,24 +17,28 @@ namespace AnnouncementApp.Service.Concrete
 {
     public class AnnouncementService : BaseService<AnnouncementsDto, Announcements>, IAnnouncementService
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IRepository<Announcements> repository;
-        private readonly IMapper mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRepository<Announcements> _repository;
+        private readonly IMapper _mapper;
         public AnnouncementService(IUnitOfWork unitOfWork, IRepository<Announcements> repository, IMapper mapper) : base(unitOfWork, repository, mapper)
         {
 
-            this.unitOfWork = unitOfWork;
-            this.repository = repository;
-            this.mapper = mapper;
+            _unitOfWork = unitOfWork;
+            _repository = repository;
+            _mapper = mapper;
+        }
+
+
+
+        public BaseResponse<string> GetDetail(int id)
+        {
+            var announcementEntity = _repository.GetById(id);
+            var announcemetDetail = announcementEntity.DetailInfo;
+            
+            return new BaseResponse<string>(announcemetDetail);
         }
     }
 
 
-    //public BaseResponse<AnnouncementsDto> GetDetail(int id)
-    //{
-    //    var entity = repository.GetById(id);
-    //    var result = mapper.Map<TEntity, Dto>(entity);
-
-    //    return new BaseResponse<AnnouncementsDto>(result);
-    //}
+  
 }

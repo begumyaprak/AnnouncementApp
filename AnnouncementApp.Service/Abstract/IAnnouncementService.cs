@@ -1,4 +1,5 @@
-﻿using AnnouncementApp.Data.Models;
+﻿using AnnouncementApp.Base.Response;
+using AnnouncementApp.Data.Models;
 using AnnouncementApp.DTO;
 using AnnouncementApp.Service.Base;
 using System;
@@ -11,5 +12,7 @@ namespace AnnouncementApp.Service.Abstract
 {
     public interface IAnnouncementService : IBaseService<AnnouncementsDto,Announcements>
     {
+
+        public BaseResponse<string> GetDetail(int id);
     }
 }

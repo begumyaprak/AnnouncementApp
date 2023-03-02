@@ -14,15 +14,15 @@ namespace AnnouncementApp.API.Controllers
         [ApiController]
         public class AnnouncementsController : Controller
         {
-            private readonly IAnnouncementService announcementService;
-            private readonly IMapper mapper;
-            private readonly IUnitOfWork unitOfWork;
+            private readonly IAnnouncementService _announcementService;
+            private readonly IMapper _mapper;
+            private readonly IUnitOfWork _unitOfWork;
 
             public AnnouncementsController(IAnnouncementService announcementService, IMapper mapper, IUnitOfWork unitOfWork)
             {
-                this.announcementService = announcementService;
-                this.mapper = mapper;
-                this.unitOfWork = unitOfWork;
+                _announcementService = announcementService;
+                _mapper = mapper;
+                _unitOfWork = unitOfWork;
             }
 
 
@@ -32,7 +32,7 @@ namespace AnnouncementApp.API.Controllers
                 try
                 {
 
-                    var result = announcementService.GetAll();
+                    var result = _announcementService.GetAll();
                     return result;
 
                 }
@@ -49,7 +49,7 @@ namespace AnnouncementApp.API.Controllers
             {
                 try
                 {
-                    var result = announcementService.GetById(id);
+                    var result = _announcementService.GetById(id);
                     return result;
 
                 }
@@ -68,7 +68,7 @@ namespace AnnouncementApp.API.Controllers
 
                 try
                 {
-                    announcementService.Add(announcementsDto);
+                    _announcementService.Add(announcementsDto);
 
                     return new BaseResponse<AnnouncementsDto>(announcementsDto);
 
@@ -91,7 +91,7 @@ namespace AnnouncementApp.API.Controllers
 
                 try
                 {
-                    announcementService.Update(id, announcementsDto);
+                    _announcementService.Update(id, announcementsDto);
 
                     return new BaseResponse<AnnouncementsDto>(announcementsDto);
 
@@ -111,7 +111,7 @@ namespace AnnouncementApp.API.Controllers
 
                 try
                 {
-                    announcementService.Delete(id);
+                    _announcementService.Delete(id);
 
                     return new BaseResponse<AnnouncementsDto>(true);
 
@@ -125,22 +125,26 @@ namespace AnnouncementApp.API.Controllers
 
             }
 
+            [HttpGet("Get Announcement Detail ")]
+            public async Task<BaseResponse<string>> GetDetail(int id)
+            {
+                try
+                {
+                     var result = _announcementService.GetDetail(id);
 
-            //[HttpGet("Get Announcement Detail ")]
-            //public async Task<BaseResponse<AnnouncementsDto>> GetDetail(int id)
-            //{
-            //    try
-            //    {
+                    return result;
 
-            //    }
-            //    catch (Exception)
-            //    {
+                }
+                catch (Exception ex)
+                {
 
-            //        throw;
-            //    }
-
-            //}
+                    throw ex;
+                }
 
         }
+
+
+
+    }
     
 }

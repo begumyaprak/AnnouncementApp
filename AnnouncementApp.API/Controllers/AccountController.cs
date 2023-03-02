@@ -18,17 +18,17 @@ namespace AnnouncementApp.API
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<Users> userManager;
-        private readonly SignInManager<Users> signInManager;
-        private readonly JwtConfig jwtConfig;
-        private readonly byte[] secret;
+        private readonly UserManager<Users> _userManager;
+        private readonly SignInManager<Users> _signInManager;
+        private readonly JwtConfig _jwtConfig;
+        private readonly byte[] _secret;
         public AccountController(UserManager<Users> userManager, SignInManager<Users> signInManager, IOptionsMonitor<JwtConfig> jwtConfig)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
 
-            this.jwtConfig = jwtConfig.CurrentValue;
-            this.secret = Encoding.ASCII.GetBytes(this.jwtConfig.Secret);
+            _jwtConfig = jwtConfig.CurrentValue;
+            _secret = Encoding.ASCII.GetBytes(_jwtConfig.Secret);
         }
 
 
@@ -38,12 +38,12 @@ namespace AnnouncementApp.API
         {
             if (ModelState.IsValid)
             {
-                var loginResult = await signInManager.PasswordSignInAsync(input.Email, input.Password, true, false);
+                var loginResult = await _signInManager.PasswordSignInAsync(input.Email, input.Password, true, false);
                 if (!loginResult.Succeeded)
                 {
                     return BadRequest();
                 }
-                var user = await userManager.FindByNameAsync(input.Email);
+                var user = await _userManager.FindByNameAsync(input.Email);
                 return Ok(GetTokenResponse(user));
             }
             return BadRequest(ModelState);
@@ -53,7 +53,7 @@ namespace AnnouncementApp.API
         [Route("SignOut")]
         public async Task<IActionResult> SignOut()
         {
-            await signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return Ok();
         }
 
@@ -76,11 +76,11 @@ namespace AnnouncementApp.API
                     
                 };
 
-                var registerUser = await userManager.CreateAsync(newUser, input.Password);
+                var registerUser = await _userManager.CreateAsync(newUser, input.Password);
                 if (registerUser.Succeeded)
                 {
-                    await signInManager.SignInAsync(newUser, isPersistent: false);
-                    var user = await userManager.FindByNameAsync(newUser.UserName);
+                    await _signInManager.SignInAsync(newUser, isPersistent: false);
+                    var user = await _userManager.FindByNameAsync(newUser.UserName);
 
                     return Ok(GetTokenResponse(user));
                 }
@@ -92,7 +92,7 @@ namespace AnnouncementApp.API
 
         private Task<Users> GetCurrentUserAsync()
         {
-            return userManager.GetUserAsync(HttpContext.User);
+            return _userManager.GetUserAsync(HttpContext.User);
         }
         private void AddErrors(IdentityResult result)
         {
@@ -107,7 +107,7 @@ namespace AnnouncementApp.API
             TokenResponse result = new TokenResponse
             {
                 AccessToken = token,
-                ExpireTime = jwtConfig.AccessTokenExpiration * 60,   // as second
+                ExpireTime = _jwtConfig.AccessTokenExpiration * 60,   // as second
                 Email = user.Email
             };
             return result;
@@ -121,11 +121,11 @@ namespace AnnouncementApp.API
             var shouldAddAudienceClaim = string.IsNullOrWhiteSpace(claims?.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Aud)?.Value);
 
             var jwtToken = new JwtSecurityToken(
-                jwtConfig.Issuer,
-                shouldAddAudienceClaim ? jwtConfig.Audience : string.Empty,
+                _jwtConfig.Issuer,
+                shouldAddAudienceClaim ? _jwtConfig.Audience : string.Empty,
                 claims,
-                expires: DateTime.Now.AddMinutes(jwtConfig.AccessTokenExpiration),
-                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(secret), SecurityAlgorithms.HmacSha256Signature));
+                expires: DateTime.Now.AddMinutes(_jwtConfig.AccessTokenExpiration),
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(_secret), SecurityAlgorithms.HmacSha256Signature));
 
             var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
