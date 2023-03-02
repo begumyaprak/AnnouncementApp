@@ -4,7 +4,7 @@
     {
         public bool Success { get; private set; }
         public string Message { get; private set; }
-        public T Response { get; private set; }
+        public T Response { get; set; }
 
         public BaseResponse(bool isSuccess)
         {

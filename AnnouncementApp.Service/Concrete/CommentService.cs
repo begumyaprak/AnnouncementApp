@@ -6,7 +6,6 @@ using AnnouncementApp.DTO;
 using AnnouncementApp.Service.Abstract;
 using AnnouncementApp.Service.Base;
 using AutoMapper;
-using IdentityModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +14,13 @@ using System.Threading.Tasks;
 
 namespace AnnouncementApp.Service.Concrete
 {
-    public class AnnouncementService : BaseService<AnnouncementDto, Announcement>, IAnnouncementService
+    public class CommentService : BaseService<CommentDto,Comment>, ICommentService
     {
+
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<Announcement> _repository;
+        private readonly IRepository<Comment> _repository;
         private readonly IMapper _mapper;
-        public AnnouncementService(IUnitOfWork unitOfWork, IRepository<Announcement> repository, IMapper mapper) : base(unitOfWork, repository, mapper)
+        public CommentService(IUnitOfWork unitOfWork, IRepository<Comment> repository, IMapper mapper) : base(unitOfWork, repository, mapper)
         {
 
             _unitOfWork = unitOfWork;
@@ -28,20 +28,18 @@ namespace AnnouncementApp.Service.Concrete
             _mapper = mapper;
         }
 
-
-
-        public string GetDetail(int id)
+        public BaseResponse<string> GetCommentText(int id)
         {
-            var announcementEntity = _repository.GetById(id);
+            var commentEntity = _repository.GetById(id);
 
-            var announcementDto = _mapper.Map<Announcement,AnnouncementDto>(announcementEntity);
+            var commentText = commentEntity.CommentText;
 
-            var announcemetDetail = announcementDto.DetailInfo;
-            
-            return  announcemetDetail;
+            return new BaseResponse<string> (commentText);
+
+
         }
+
+
+
     }
-
-
-  
 }

@@ -10,9 +10,8 @@ using System.Threading.Tasks;
 
 namespace AnnouncementApp.Service.Abstract
 {
-    public interface IAnnouncementService : IBaseService<AnnouncementDto,Announcement>
+    public interface ICommentService : IBaseService<CommentDto, Comment>
     {
-
-        public string GetDetail(int id);
+        public BaseResponse<string> GetCommentText(int id);
     }
 }

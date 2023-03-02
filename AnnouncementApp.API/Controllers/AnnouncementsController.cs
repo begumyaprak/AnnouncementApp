@@ -27,7 +27,7 @@ namespace AnnouncementApp.API.Controllers
 
 
             [HttpGet("GetAll")]
-            public async Task<BaseResponse<List<AnnouncementsDto>>> GetAllAnnouncements()
+            public async Task<BaseResponse<List<AnnouncementDto>>> GetAllAnnouncements()
             {
                 try
                 {
@@ -45,7 +45,7 @@ namespace AnnouncementApp.API.Controllers
             }
 
             [HttpGet("GetById")]
-            public async Task<BaseResponse<AnnouncementsDto>> GetAnnouncementById(int id)
+            public async Task<BaseResponse<AnnouncementDto>> GetAnnouncementById(int id)
             {
                 try
                 {
@@ -63,14 +63,14 @@ namespace AnnouncementApp.API.Controllers
             }
 
             [HttpPost("Add Announcement")]
-            public async Task<BaseResponse<AnnouncementsDto>> AddAnnouncement(AnnouncementsDto announcementsDto)
+            public async Task<BaseResponse<AnnouncementDto>> AddAnnouncement(AnnouncementDto announcementsDto)
             {
 
                 try
                 {
                     _announcementService.Add(announcementsDto);
 
-                    return new BaseResponse<AnnouncementsDto>(announcementsDto);
+                    return new BaseResponse<AnnouncementDto>(announcementsDto);
 
 
 
@@ -86,14 +86,14 @@ namespace AnnouncementApp.API.Controllers
 
 
             [HttpPut("Update Announcement")]
-            public async Task<BaseResponse<AnnouncementsDto>> UpdateAnnouncementy(AnnouncementsDto announcementsDto, int id)
+            public async Task<BaseResponse<AnnouncementDto>> UpdateAnnouncementy(AnnouncementDto announcementsDto, int id)
             {
 
                 try
                 {
                     _announcementService.Update(id, announcementsDto);
 
-                    return new BaseResponse<AnnouncementsDto>(announcementsDto);
+                    return new BaseResponse<AnnouncementDto>(announcementsDto);
 
 
                 }
@@ -106,14 +106,14 @@ namespace AnnouncementApp.API.Controllers
             }
 
             [HttpDelete("Delete Announcement")]
-            public async Task<BaseResponse<AnnouncementsDto>> DeleteAnnouncement(int id)
+            public async Task<BaseResponse<AnnouncementDto>> DeleteAnnouncement(int id)
             {
 
                 try
                 {
                     _announcementService.Delete(id);
 
-                    return new BaseResponse<AnnouncementsDto>(true);
+                    return new BaseResponse<AnnouncementDto>(true);
 
 
                 }
@@ -126,13 +126,16 @@ namespace AnnouncementApp.API.Controllers
             }
 
             [HttpGet("Get Announcement Detail ")]
-            public async Task<BaseResponse<string>> GetDetail(int id)
+            public async Task<string> GetDetail(int id)
             {
                 try
                 {
-                     var result = _announcementService.GetDetail(id);
+                    var result = _announcementService.GetDetail(id);
 
-                    return result;
+                    
+
+                     return result;
+
 
                 }
                 catch (Exception ex)
@@ -141,7 +144,8 @@ namespace AnnouncementApp.API.Controllers
                     throw ex;
                 }
 
-        }
+            }
+
 
 
 

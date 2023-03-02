@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AnnouncementApp.Data.Models
 {
-    public class Users : IdentityUser 
+    public class User : IdentityUser 
     {
 
         public string FirstName { get; set; }
@@ -16,9 +16,9 @@ namespace AnnouncementApp.Data.Models
 
         public string Department { get; set; }
 
-        //likes
+        public IEnumerable<Like> Likes { get; set; }
 
-        // comments
+        public IEnumerable<Comment> Comments { get; set; }
 
     }
 }

@@ -34,7 +34,7 @@ builder.Services.AddDbContext<AppDBContext>(
 );
 
 // identity
-builder.Services.AddIdentity<Users,IdentityRole>()
+builder.Services.AddIdentity<User,IdentityRole>()
     .AddEntityFrameworkStores<AppDBContext>()
     .AddDefaultTokenProviders();
     
@@ -74,7 +74,7 @@ builder.Services.AddAuthentication(x =>
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
-builder.Services.AddScoped<IRepository<Announcements>, Repository<Announcements>>();
+builder.Services.AddScoped<IRepository<Announcement>, Repository<Announcement>>();
 
 
 // Configure AutoMapper

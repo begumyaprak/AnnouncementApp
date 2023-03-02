@@ -14,9 +14,16 @@ namespace AnnouncementApp.Service.Mapping
         public MappingProfile() 
         
         {
-            CreateMap<AnnouncementsDto, Announcements>()
+            CreateMap<AnnouncementDto, Announcement>()
             .ReverseMap();
 
+
+            CreateMap<LikeDto, Like>()
+            .ReverseMap();
+
+
+            CreateMap<CommentDto, Comment>()
+            .ReverseMap();
         }
     }
 }

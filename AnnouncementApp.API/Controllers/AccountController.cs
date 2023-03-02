@@ -18,11 +18,11 @@ namespace AnnouncementApp.API
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<Users> _userManager;
-        private readonly SignInManager<Users> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly JwtConfig _jwtConfig;
         private readonly byte[] _secret;
-        public AccountController(UserManager<Users> userManager, SignInManager<Users> signInManager, IOptionsMonitor<JwtConfig> jwtConfig)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IOptionsMonitor<JwtConfig> jwtConfig)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -64,7 +64,7 @@ namespace AnnouncementApp.API
         {
             if (ModelState.IsValid)
             {
-                var newUser = new Users
+                var newUser = new User
                 {
                     UserName = input.Email,
                     Email = input.Email,
@@ -90,7 +90,7 @@ namespace AnnouncementApp.API
 
         }
 
-        private Task<Users> GetCurrentUserAsync()
+        private Task<User> GetCurrentUserAsync()
         {
             return _userManager.GetUserAsync(HttpContext.User);
         }
@@ -101,7 +101,7 @@ namespace AnnouncementApp.API
                 ModelState.AddModelError("error", err.Description);
             }
         }
-        private TokenResponse GetTokenResponse(Users user)
+        private TokenResponse GetTokenResponse(User user)
         {
             var token = GenerateAccessToken(user);
             TokenResponse result = new TokenResponse
@@ -113,7 +113,7 @@ namespace AnnouncementApp.API
             return result;
         }
 
-        private string GenerateAccessToken(Users user)
+        private string GenerateAccessToken(User user)
         {
             // Get claim value
             Claim[] claims = GetClaim(user);
@@ -131,7 +131,7 @@ namespace AnnouncementApp.API
 
             return accessToken;
         }
-        private static Claim[] GetClaim(Users user)
+        private static Claim[] GetClaim(User user)
         {
             var claims = new[]
             {

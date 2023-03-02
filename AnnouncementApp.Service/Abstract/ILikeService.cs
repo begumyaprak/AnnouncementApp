@@ -1,5 +1,4 @@
-﻿using AnnouncementApp.Base.Response;
-using AnnouncementApp.Data.Models;
+﻿using AnnouncementApp.Data.Models;
 using AnnouncementApp.DTO;
 using AnnouncementApp.Service.Base;
 using System;
@@ -10,9 +9,7 @@ using System.Threading.Tasks;
 
 namespace AnnouncementApp.Service.Abstract
 {
-    public interface IAnnouncementService : IBaseService<AnnouncementDto,Announcement>
+    public interface ILikeService : IBaseService<LikeDto,Like>
     {
-
-        public string GetDetail(int id);
     }
 }

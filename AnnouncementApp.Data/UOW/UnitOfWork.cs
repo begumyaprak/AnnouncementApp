@@ -17,23 +17,21 @@ namespace AnnouncementApp.Data.UOW
         {
             _dbContext = dbContext;
 
-           // Users = new Repository<Users>(_dbContext);
+            Like = new Repository<Like>(_dbContext);
 
-            Announcements = new Repository<Announcements>(_dbContext);
+            Comment = new Repository<Comment>(_dbContext);
+
+            Announcement = new Repository<Announcement>(_dbContext);
 
 
         }
 
-        //public IRepository<Users> Users { get; private set; }
+        public IRepository<Like> Like { get; private set; }
+        public IRepository<Comment> Comment { get; private set; }
 
-        public IRepository<Announcements> Announcements { get; private set; }
+        public IRepository<Announcement> Announcement { get; private set; }
 
-      
-
-   
-
-
-
+     
         public void Dispose()
         {
             _dbContext.Dispose();

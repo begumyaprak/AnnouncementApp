@@ -14,9 +14,11 @@ namespace AnnouncementApp.Data.UOW
 
     public interface IUnitOfWork : IDisposable
     {
-       // public IRepository<Users> Users { get; }
+        public IRepository<Like> Like { get; }
 
-        public IRepository<Announcements> Announcements { get; }
+        public IRepository<Comment> Comment { get; }
+
+        public IRepository<Announcement> Announcement { get; }
 
         Task SaveChangesAsync();
 

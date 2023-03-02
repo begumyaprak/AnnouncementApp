@@ -9,18 +9,21 @@ using System.Threading.Tasks;
 
 namespace AnnouncementApp.Data
 {
-    public class AppDBContext : IdentityDbContext<Users>
+    public class AppDBContext : IdentityDbContext<User>
     {
 
         public AppDBContext(DbContextOptions options) : base(options)
         {
         }
 
-        public DbSet<Announcements> Announcements { get; set; }
+        public DbSet<Announcement> Announcement { get; set; }
 
-        
+        public DbSet<Like> Like { get; set; }
 
-        
+        public DbSet<Comment> Comment { get; set; }
+
+
+
 
     }
 }
