@@ -71,10 +71,14 @@ builder.Services.AddAuthentication(x =>
         ClockSkew = TimeSpan.FromMinutes(2)
     };
 });
-
+builder.Services.AddScoped<IRepository<Announcement>, Repository<Announcement>>();
+builder.Services.AddScoped<IRepository<Comment>, Repository<Comment>>();
+builder.Services.AddScoped<IRepository<Like>, Repository<Like>>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
-builder.Services.AddScoped<IRepository<Announcement>, Repository<Announcement>>();
+builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<ILikeService, LikeService>();
+
 
 
 // Configure AutoMapper
