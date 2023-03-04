@@ -5,15 +5,15 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnouncementApp.Data", "AnnouncementApp.Data\AnnouncementApp.Data.csproj", "{97AC81BD-82EE-43F5-A89F-C988377AA902}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnouncementApp.API", "AnnouncementApp.API\AnnouncementApp.API.csproj", "{EB24FF1A-FB70-4DA0-B67B-622390346621}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnouncementApp.API", "AnnouncementApp.API\AnnouncementApp.API.csproj", "{EB24FF1A-FB70-4DA0-B67B-622390346621}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnouncementApp.Base", "AnnouncementApp.Base\AnnouncementApp.Base.csproj", "{7DAD5FB7-3533-4EE8-897A-80751406FD1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnouncementApp.Base", "AnnouncementApp.Base\AnnouncementApp.Base.csproj", "{7DAD5FB7-3533-4EE8-897A-80751406FD1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnouncementApp.Service", "AnnouncementApp.Service\AnnouncementApp.Service.csproj", "{DED63DFC-50BB-486D-B477-ED32DCB289BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnouncementApp.Service", "AnnouncementApp.Service\AnnouncementApp.Service.csproj", "{DED63DFC-50BB-486D-B477-ED32DCB289BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnouncementApp.DTO", "AnnouncementApp.DTO\AnnouncementApp.DTO.csproj", "{E94559C0-D27E-4CD8-9337-C4B95944F470}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnouncementApp.DTO", "AnnouncementApp.DTO\AnnouncementApp.DTO.csproj", "{E94559C0-D27E-4CD8-9337-C4B95944F470}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnouncementApp.WebSite", "AnnouncementApp.WebSite\AnnouncementApp.WebSite.csproj", "{C0E857E9-F420-4FA7-AFDF-D30FAB1AA30C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnouncementApp.UI", "AnnouncementApp.WebSite\AnnouncementApp.UI.csproj", "{C0E857E9-F420-4FA7-AFDF-D30FAB1AA30C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

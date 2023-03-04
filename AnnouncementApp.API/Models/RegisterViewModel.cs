@@ -4,6 +4,14 @@ namespace AnnouncementApp.API
 {
     public class RegisterViewModel
     {
+
+        [Required]
+        [StringLength(30, ErrorMessage = "{0} field max {1},  at least {2} chars.", MinimumLength = 5)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(30, ErrorMessage = "{0} field max {1},  at least {2} chars.", MinimumLength = 5)]
+        public string LastName { get; set; }
         [Required]
         [StringLength(30, ErrorMessage = "{0} field at least {1}, max {2} chars", MinimumLength = 5)]
         [EmailAddress]
@@ -18,15 +26,6 @@ namespace AnnouncementApp.API
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Passwords not same")]
         public string ConfirmPassword { get; set; }
-
-        [Required]
-        [StringLength(30, ErrorMessage = "{0} field max {1},  at least {2} chars.", MinimumLength = 5)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [StringLength(30, ErrorMessage = "{0} field max {1},  at least {2} chars.", MinimumLength = 5)]
-        public string LastName { get; set; }
-
 
         [Required]
         public string Department { get; set; }
