@@ -10,8 +10,8 @@ namespace AnnouncementApp.Service.Base
 {
     public interface IBaseService<Dto, TEntity> where TEntity : class where Dto : class
     {
-        BaseResponse<Dto> GetById(int id);
-        BaseResponse<List<Dto>> GetAll();
+        Dto GetById(int id);
+        List<Dto> GetAll();
         BaseResponse<Dto> Add(Dto DtoEntity);
         BaseResponse<Dto> Update(int id, Dto DtoEntity);
         BaseResponse<Dto> Delete(int id);

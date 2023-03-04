@@ -8,6 +8,7 @@ namespace AnnouncementApp.DTO
 {
     public class AnnouncementDto
     {
+        public int Id { get; set; }
         public string Title { get; set; }
 
         public string DetailInfo { get; set; }

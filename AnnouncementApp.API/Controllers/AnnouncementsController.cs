@@ -27,7 +27,7 @@ namespace AnnouncementApp.API.Controllers
 
 
             [HttpGet("GetAll")]
-            public async Task<BaseResponse<List<AnnouncementDto>>> GetAllAnnouncements()
+            public async Task<List<AnnouncementDto>> GetAllAnnouncements()
             {
                 try
                 {
@@ -44,12 +44,16 @@ namespace AnnouncementApp.API.Controllers
 
             }
 
-            [HttpGet("GetById")]
-            public async Task<BaseResponse<AnnouncementDto>> GetAnnouncementById(int id)
+
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<AnnouncementDto>GetAnnouncementById(string id)
             {
+                var intId = Convert.ToInt32(id);
                 try
                 {
-                    var result = _announcementService.GetById(id);
+                    var result = _announcementService.GetById(intId);
                     return result;
 
                 }

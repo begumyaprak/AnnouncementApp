@@ -24,7 +24,7 @@ namespace AnnouncementApp.API.Controllers
 
 
         [HttpGet("GetAll")]
-        public async Task<BaseResponse<List<LikeDto>>> GetAllLikes()
+        public async Task<List<LikeDto>> GetAllLikes()
         {
             try
             {
@@ -42,7 +42,7 @@ namespace AnnouncementApp.API.Controllers
         }
 
         [HttpGet("GetById")]
-        public async Task<BaseResponse<LikeDto>> GetAnnouncementById(int id)
+        public async Task<LikeDto> GetAnnouncementById(int id)
         {
             try
             {

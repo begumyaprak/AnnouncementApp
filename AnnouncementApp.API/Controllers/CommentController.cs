@@ -22,7 +22,7 @@ namespace AnnouncementApp.API.Controllers
 
 
         [HttpGet("GetAll")]
-        public async Task<BaseResponse<List<CommentDto>>> GetAllComments()
+        public async Task<List<CommentDto>> GetAllComments()
         {
             try
             {
@@ -40,7 +40,7 @@ namespace AnnouncementApp.API.Controllers
         }
 
         [HttpGet("GetById")]
-        public async Task<BaseResponse<CommentDto>> GetCommentById(int id)
+        public async Task<CommentDto> GetCommentById(int id)
         {
             try
             {

@@ -23,7 +23,14 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("myclients", builder =>
+           builder.WithOrigins("https://localhost:7139", "https://localhost:7164").AllowAnyMethod().AllowAnyHeader()
+           );
 
+
+});
 // Configure JWT Bearer
 var JwtConfig = builder.Configuration.GetSection("JwtConfig").Get<JwtConfig>();
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
@@ -133,6 +140,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+app.UseCors("myclients");
 app.UseAuthentication();
 app.UseAuthorization();
 

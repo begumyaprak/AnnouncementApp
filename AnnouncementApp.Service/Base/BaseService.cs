@@ -24,20 +24,20 @@ namespace AnnouncementApp.Service.Base
             _mapper = mapper;
         }
 
-        public BaseResponse<Dto> GetById(int id)
+        public Dto GetById(int id)
         {
             var entity = _repository.GetById(id);
             var result = _mapper.Map<TEntity,Dto>(entity);
 
-            return  new BaseResponse<Dto>(result);
+            return (result);
         } 
 
-        public  BaseResponse<List<Dto>> GetAll()
+        public List<Dto> GetAll()
         {
             var entity = _repository.GetAll();
             var result = _mapper.Map<List<TEntity>,List<Dto>>(entity);
 
-            return new BaseResponse<List<Dto>>(result);
+            return (result);
         }
 
         public BaseResponse<Dto> Add(Dto DtoEntity)
