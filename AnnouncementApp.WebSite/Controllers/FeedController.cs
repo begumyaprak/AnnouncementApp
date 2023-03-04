@@ -21,21 +21,21 @@ namespace AnnouncementApp.UI.Controllers
         {
             _flurlClient = flurlClientFactory.Get("https://localhost:7164");
             _httpContextAccessor = httpContextAccessor;
-        
-            //_flurlClient.BeforeCall(flurlCall =>
-            //{
 
-            //    var token = _httpContextAccessor.HttpContext.Request
-            //                    .Cookies[Constant.XAccessToken];
-            //    if (!string.IsNullOrWhiteSpace(token))
-            //    {
-            //        flurlCall.HttpRequestMessage.SetHeader("Authorization", $"bearer {token}");
-            //    }
-            //    else
-            //    {
-            //        flurlCall.HttpRequestMessage.SetHeader("Authorization", string.Empty);
-            //    }
-            //});
+            _flurlClient.BeforeCall(flurlCall =>
+            {
+
+                var token = _httpContextAccessor.HttpContext.Request
+                                .Cookies[Constant.XAccessToken];
+                if (!string.IsNullOrWhiteSpace(token))
+                {
+                    flurlCall.HttpRequestMessage.SetHeader("Authorization", $"bearer {token}");
+                }
+                else
+                {
+                    flurlCall.HttpRequestMessage.SetHeader("Authorization", string.Empty);
+                }
+            });
 
 
         }

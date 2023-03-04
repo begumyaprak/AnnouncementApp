@@ -30,16 +30,6 @@ namespace AnnouncementApp.Service.Concrete
 
 
 
-        public string GetDetail(int id)
-        {
-            var announcementEntity = _repository.GetById(id);
-
-            var announcementDto = _mapper.Map<Announcement,AnnouncementDto>(announcementEntity);
-
-            var announcemetDetail = announcementDto.DetailInfo;
-            
-            return  announcemetDetail;
-        }
     }
 
 

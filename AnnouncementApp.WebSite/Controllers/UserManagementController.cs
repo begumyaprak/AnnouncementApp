@@ -30,8 +30,7 @@ namespace AnnouncementApp.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterPost(RegisterViewModel viewModel)
         {
-            // insert viewModel data to the api (db)
-            // redirect to ConfirmationReminder
+           
             await _userManagementService.Register(viewModel.FirstName, viewModel.LastName,
                                                 viewModel.Email, viewModel.Password,
                                                 viewModel.ConfirmPassword, viewModel.Department);
@@ -51,7 +50,7 @@ namespace AnnouncementApp.UI.Controllers
                     HttpOnly = true,
                     SameSite = SameSiteMode.Strict
                 });
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Feed");
         }
     }
 }

@@ -30,7 +30,8 @@ namespace AnnouncementApp.UI.Services
         }
 
         public async Task<TokenResponse> Login(string email, string password)
-        {
+        {   
+
             var userLogin = new LoginModel
             {
                 Email = email,

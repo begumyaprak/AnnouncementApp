@@ -4,6 +4,7 @@ using AnnouncementApp.DTO;
 using AnnouncementApp.Service.Abstract;
 using AnnouncementApp.Service.Concrete;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnnouncementApp.API.Controllers
@@ -25,7 +26,7 @@ namespace AnnouncementApp.API.Controllers
                 _unitOfWork = unitOfWork;
             }
 
-
+            [Authorize]
             [HttpGet("GetAll")]
             public async Task<List<AnnouncementDto>> GetAllAnnouncements()
             {
@@ -45,10 +46,10 @@ namespace AnnouncementApp.API.Controllers
             }
 
 
-
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<AnnouncementDto>GetAnnouncementById(string id)
+            //[Authorize]
+            [HttpGet]
+            [Route("{id}")]
+            public async Task<AnnouncementDto>GetAnnouncementById(string id)
             {
                 var intId = Convert.ToInt32(id);
                 try
@@ -66,7 +67,7 @@ namespace AnnouncementApp.API.Controllers
 
             }
 
-            [HttpPost("Add Announcement")]
+            [HttpPost("AddAnnouncement")]
             public async Task<BaseResponse<AnnouncementDto>> AddAnnouncement(AnnouncementDto announcementsDto)
             {
 
@@ -89,7 +90,7 @@ namespace AnnouncementApp.API.Controllers
 
 
 
-            [HttpPut("Update Announcement")]
+            [HttpPut("UpdateAnnouncement")]
             public async Task<BaseResponse<AnnouncementDto>> UpdateAnnouncementy(AnnouncementDto announcementsDto, int id)
             {
 
@@ -109,7 +110,7 @@ namespace AnnouncementApp.API.Controllers
 
             }
 
-            [HttpDelete("Delete Announcement")]
+            [HttpDelete("DeleteAnnouncement")]
             public async Task<BaseResponse<AnnouncementDto>> DeleteAnnouncement(int id)
             {
 
@@ -129,25 +130,7 @@ namespace AnnouncementApp.API.Controllers
 
             }
 
-            [HttpGet("Get Announcement Detail ")]
-            public async Task<string> GetDetail(int id)
-            {
-                try
-                {
-                    var result = _announcementService.GetDetail(id);
-
-                    
-
-                     return result;
-
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-
+           
             }
 
 
@@ -155,4 +138,4 @@ namespace AnnouncementApp.API.Controllers
 
     }
     
-}
+

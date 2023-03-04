@@ -13,6 +13,6 @@ namespace AnnouncementApp.Service.Abstract
     public interface IAnnouncementService : IBaseService<AnnouncementDto,Announcement>
     {
 
-        public string GetDetail(int id);
+       
     }
 }
