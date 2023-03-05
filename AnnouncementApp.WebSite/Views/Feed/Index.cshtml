@@ -69,7 +69,7 @@
     }
 
     .social-avatar .media-body a {
-        font-size: 14px;
+        font-size: 17px;
         display: block;
     }
 
@@ -171,7 +171,7 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
-    <div class="col-md-7">
+    <div class="col">
         @foreach (var announcement in Model.Announcements)
         {
 
@@ -183,7 +183,7 @@
                 <div class="social-avatar">
 
                     <div class="media-body">
-                        <a >
+                        <a style="font-weight:bold">
                             @Html.ActionLink(@announcement.Title, "Detail" , "Feed", new { id = announcement.Id })
                         </a>
 

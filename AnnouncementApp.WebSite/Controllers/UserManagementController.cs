@@ -41,8 +41,17 @@ namespace AnnouncementApp.UI.Controllers
         [ActionName("LoginPost")]
         public async Task<IActionResult> LoginPost(LoginModel model)
         {
+
             var tokenResponse = await _userManagementService
-                                .Login(model.Email, model.Password);
+                            .Login(model.Email, model.Password);
+
+            if (tokenResponse == null)
+            {
+
+                ModelState.AddModelError(string.Empty , "Invalid Login");
+                return View("Index");
+
+            }
             Response.Cookies.Append(
                 Constant.XAccessToken,
                 tokenResponse.AccessToken, new CookieOptions
@@ -51,6 +60,7 @@ namespace AnnouncementApp.UI.Controllers
                     SameSite = SameSiteMode.Strict
                 });
             return RedirectToAction("Index", "Feed");
+
         }
     }
 }

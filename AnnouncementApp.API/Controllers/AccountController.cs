@@ -3,11 +3,14 @@ using AnnouncementApp.Base.Jwt;
 using AnnouncementApp.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +44,13 @@ namespace AnnouncementApp.API
                 var loginResult = await _signInManager.PasswordSignInAsync(input.Email, input.Password, true, false);
                 if (!loginResult.Succeeded)
                 {
-                    return BadRequest();
+
+                   return BadRequest("Invalid login credentials");
+                
+                    //return Ok();
+                   // return StatusCode(404);
+
+
                 }
                 var user = await _userManager.FindByNameAsync(input.Email);
                 return Ok(GetTokenResponse(user));

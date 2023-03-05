@@ -59,7 +59,7 @@ namespace AnnouncementApp.API.Controllers
 
         }
 
-        [HttpPost("Add Like")]
+        [HttpPost("AddLike")]
         public async Task<BaseResponse<LikeDto>> AddLike(LikeDto likeDto)
         {
 
@@ -82,7 +82,7 @@ namespace AnnouncementApp.API.Controllers
 
 
 
-        [HttpPut("Update Like")]
+        [HttpPut("UpdateLike")]
         public async Task<BaseResponse<LikeDto>> UpdateAnnouncementy(LikeDto likeDto, int id)
         {
 
@@ -102,7 +102,7 @@ namespace AnnouncementApp.API.Controllers
 
         }
 
-        [HttpDelete("Delete Like")]
+        [HttpDelete("DeleteLike")]
         public async Task<BaseResponse<LikeDto>> DeleteLike(int id)
         {
 

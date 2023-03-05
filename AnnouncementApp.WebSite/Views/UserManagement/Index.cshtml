@@ -2,8 +2,8 @@
 
 <style>
     .blue-container {
-        color: #fff;
-        background: #3598dc;
+        color: #dae6e5;
+        background: #8dadaadc;
         font-family: 'Roboto', sans-serif;
     }
 
@@ -66,13 +66,13 @@
         .signup-form .btn {
             font-size: 16px;
             font-weight: bold;
-            background: #3598dc;
+            background: #8dadaadc;
             border: none;
             min-width: 140px;
         }
 
             .signup-form .btn:hover, .signup-form .btn:focus {
-                background: #2389cd !important;
+                background: #8dadaadc !important;
                 outline: none;
             }
 
@@ -99,6 +99,16 @@
             text-align: center;
         }
 </style>
+
+@if (ViewData.ModelState.Any(x => x.Value.Errors.Count > 0))
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(x => x.Errors))
+        {
+            <span>@error.ErrorMessage</span><br />
+        }
+    </div>
+}
 <div class="blue-container">
     <div class="signup-form pt-5">
         @using (@Html.BeginForm("LoginPost", "UserManagement", FormMethod.Post))

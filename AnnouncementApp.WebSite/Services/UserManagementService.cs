@@ -4,6 +4,8 @@ using Azure;
 using Flurl;
 using Flurl.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Net;
 
 namespace AnnouncementApp.UI.Services
 {
@@ -29,6 +31,11 @@ namespace AnnouncementApp.UI.Services
                    .PostJsonAsync(registerViewModel);
         }
 
+
+        public class ErrorResponse
+        {
+            public string Message { get; set; }
+        }
         public async Task<TokenResponse> Login(string email, string password)
         {   
 
@@ -38,9 +45,24 @@ namespace AnnouncementApp.UI.Services
                 Password = password
             };
 
-            return await "https://localhost:7164/"
-                     .AppendPathSegment("/api/Account/Login")
-                     .PostJsonAsync(userLogin).ReceiveJson<TokenResponse>();
+
+            var result = await "https://localhost:7164/"
+                   //.AllowAnyHttpStatus()
+                   .AllowHttpStatus("400")
+                   .AppendPathSegment("/api/Account/Login")
+                   .PostJsonAsync(userLogin);
+            
+            if (result.StatusCode == 400)
+            {
+               
+                return null;
+            }
+
+            result.ResponseMessage.EnsureSuccessStatusCode();
+
+            return await result.GetJsonAsync<TokenResponse>();
+
+            
         }
 
     }

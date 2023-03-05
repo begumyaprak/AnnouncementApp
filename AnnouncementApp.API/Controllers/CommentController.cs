@@ -57,7 +57,7 @@ namespace AnnouncementApp.API.Controllers
 
         }
 
-        [HttpPost("Add Comment")]
+        [HttpPost("AddComment")]
         public async Task<BaseResponse<CommentDto>> AddComment(CommentDto commentDto)
         {
 
@@ -80,7 +80,7 @@ namespace AnnouncementApp.API.Controllers
 
 
 
-        [HttpPut("Update Comment")]
+        [HttpPut("UpdateComment")]
         public async Task<BaseResponse<CommentDto>> UpdateComment(CommentDto commentDto, int id)
         {
 
@@ -100,7 +100,7 @@ namespace AnnouncementApp.API.Controllers
 
         }
 
-        [HttpDelete("Delete Comment")]
+        [HttpDelete("DeleteComment")]
         public async Task<BaseResponse<CommentDto>> DeleteComment(int id)
         {
 
@@ -120,7 +120,7 @@ namespace AnnouncementApp.API.Controllers
 
         }
 
-        [HttpGet("Get Comment Text ")]
+        [HttpGet("GetCommentText ")]
         public async Task<BaseResponse<string>> GetCommentText(int id)
         {
             try
