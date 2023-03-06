@@ -61,7 +61,7 @@ namespace AnnouncementApp.API.Controllers
                 catch (Exception ex)
                 {
 
-                    throw ex;
+                    throw new Exception(ex.ToString());
                 }
 
 
@@ -83,7 +83,7 @@ namespace AnnouncementApp.API.Controllers
                 catch (Exception ex)
                 {
 
-                    throw ex;
+                    throw new Exception(ex.ToString());
                 }
 
             }
@@ -105,7 +105,7 @@ namespace AnnouncementApp.API.Controllers
                 catch (Exception ex)
                 {
 
-                    throw ex;
+                     throw new Exception(ex.ToString());
                 }
 
             }
@@ -125,7 +125,7 @@ namespace AnnouncementApp.API.Controllers
                 catch (Exception ex)
                 {
 
-                    throw ex;
+                    throw new Exception(ex.ToString());
                 }
 
             }

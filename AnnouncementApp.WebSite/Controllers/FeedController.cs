@@ -18,7 +18,8 @@ namespace AnnouncementApp.UI.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
        
         public FeedController(IFlurlClientFactory flurlClientFactory, IHttpContextAccessor httpContextAccessor )
-        {
+        {   
+
             _flurlClient = flurlClientFactory.Get("https://localhost:7164");
             _httpContextAccessor = httpContextAccessor;
 
@@ -42,36 +43,55 @@ namespace AnnouncementApp.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-           
-            var response = await _flurlClient.Request("/api/Announcements/GetAll")
+            try
+            {
+                var response = await _flurlClient.Request("/api/Announcements/GetAll")
                             .GetJsonAsync<List<AnnouncementDto>>();
 
-            var announcementViewModel = new AnnouncementViewModel
+                var announcementViewModel = new AnnouncementViewModel
+                {
+
+                    Announcements = response
+                };
+
+                return View(announcementViewModel);
+
+            }
+            catch (Exception ex)
             {
 
-                Announcements =  response
-            };
-
-            return View(announcementViewModel);
+                throw new Exception(ex.ToString());
+            }
+           
+            
         }
 
         public async Task<IActionResult> Detail()
         {
-            var id = Convert.ToInt32(Request.RouteValues["id"]);
-
-
-            var response = await "https://localhost:7164"
-                       .AppendPathSegment($"/api/Announcements/{id}")
-                       .GetJsonAsync<AnnouncementDto>();
-
-
-            var announcementDetailViewModel = new AnnouncementDetailViewModel
+            try
             {
+                var id = Convert.ToInt32(Request.RouteValues["id"]);
 
-                SelectedAnnouncement = response
-            };
 
-            return View(announcementDetailViewModel);
+                var response = await "https://localhost:7164"
+                           .AppendPathSegment($"/api/Announcements/{id}")
+                           .GetJsonAsync<AnnouncementDto>();
+
+
+                var announcementDetailViewModel = new AnnouncementDetailViewModel
+                {
+
+                    SelectedAnnouncement = response
+                };
+
+                return View(announcementDetailViewModel);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+           
         }
 
 

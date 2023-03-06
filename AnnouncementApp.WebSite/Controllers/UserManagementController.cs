@@ -30,12 +30,22 @@ namespace AnnouncementApp.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterPost(RegisterViewModel viewModel)
         {
-           
-            await _userManagementService.Register(viewModel.FirstName, viewModel.LastName,
+            try
+            {
+                await _userManagementService.Register(viewModel.FirstName, viewModel.LastName,
                                                 viewModel.Email, viewModel.Password,
                                                 viewModel.ConfirmPassword, viewModel.Department);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.ToString());
+            }
+           
+            
         }
         [HttpPost]
         [ActionName("LoginPost")]
